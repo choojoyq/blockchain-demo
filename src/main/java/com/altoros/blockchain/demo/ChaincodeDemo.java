@@ -60,13 +60,13 @@ public class ChaincodeDemo extends ChaincodeBase {
             res = chaincodeFunction.invoke(chaincodeStub, args);
             log.debug("Invocation result=" + res);
         } catch (Exception e) {
-            log.error("Error during function invocation", e);
+            log.error("Error during invocation of function=" + function, e);
             res = new Error(e.getMessage());
         }
         try {
             return objectMapper.writeValueAsString(res);
         } catch (JsonProcessingException e) {
-            log.error("Error during object json serialization", e);
+            log.error("Error during json serialization", e);
             return "{\"message\":\"Internal server error\"}";
         }
     }

@@ -50,12 +50,12 @@ public class EntityManager {
         List<T> ts = new ArrayList<>();
         for (Map.Entry<String, String> entry : values.entrySet()) {
             String entryKey = entry.getKey();
-            int pos = entryKey.indexOf(KEY_SEPARATOR);
+            int keySeparatorPos = entryKey.indexOf(KEY_SEPARATOR);
             // generator
-            if (pos == -1) {
+            if (keySeparatorPos == -1) {
                 continue;
             }
-            if (entryKey.substring(0, entryKey.indexOf(KEY_SEPARATOR)).equals(clazz.getCanonicalName())) {
+            if (entryKey.substring(0, keySeparatorPos).equals(clazz.getCanonicalName())) {
                 T t = objectMapper.readValue(entry.getValue(), clazz);
                 ts.add(t);
             }
